@@ -2,7 +2,7 @@
 
     require_once('koneksi.php');
     
-    $sql = "SELECT * FROM kelas;";
+    $sql = "select * from kelas;";
 
     $r = mysqli_query($con, $sql);
 

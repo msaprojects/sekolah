@@ -2,7 +2,14 @@
 
     require_once('koneksi.php');
 
-     $sql = "SELECT * FROM pembayaran p, pembayaran_detail pd where p.idpembayaran=pd.idpembayaran;";
+    $jabatan = $_GET['jabatan'];
+
+    if($jabatan == 'Wali'){
+        $idbiodata = $_GET['idbiodata'];
+             $sql = "SELECT * FROM pembayaran p, pembayaran_detail pd where p.idpembayaran=pd.idpembayaran and nis='$idbiodata';";
+    }else{
+        $sql = "SELECT * FROM pembayaran p, pembayaran_detail pd where p.idpembayaran=pd.idpembayaran;";
+    }
 
     $r = mysqli_query($con, $sql);
 
