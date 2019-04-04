@@ -4,9 +4,9 @@
 
     $jabatan = $_GET['jabatan'];
 
-    if($jabatan == 'Wali'){
+    if($jabatan == 'Siswa' || $jabatan == 'Wali'){
         $idbiodata = $_GET['idbiodata'];
-             $sql = "SELECT * FROM pembayaran p, pembayaran_detail pd where p.idpembayaran=pd.idpembayaran and nis='$idbiodata';";
+        $sql = "SELECT * FROM pembayaran p, pembayaran_detail pd where p.idpembayaran=pd.idpembayaran and nis='$idbiodata';";
     }else{
         $sql = "SELECT * FROM pembayaran p, pembayaran_detail pd where p.idpembayaran=pd.idpembayaran;";
     }

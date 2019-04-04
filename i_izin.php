@@ -33,6 +33,13 @@ require_once('koneksi.php');
         $sql = "INSERT INTO izin_kelas (alasan, kategori, approve, nis, gambar, idpengguna, tanggal) VALUES ('$alasan', '$kategori', '0', '$nis', '$actualpath1', '$idpengguna', $tanggal);";
 
         if(mysqli_query($con, $sql)){
+            
+            require_once('notification.php');
+            $notification = new Notification();
+            $tokenbk = mysqli_fetch_row(mysqli_query($con, "SELECT token from pengguna where id_biodata=$nis"));
+            $result = $notification->sendFCMSingle("", "", $tokensales[0], $notification->setNotification("TUGAS BARU", "Anda mendapatkan tugas kunjungan ke "));
+
+            
             if($path1!="") file_put_contents($path1, base64_decode($image1));
             echo 'Izin untuk anak anda berhasil di ajukan.';
         }else{

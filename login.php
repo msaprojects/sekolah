@@ -3,17 +3,19 @@
 
     class usr{}
 
-	$username = $_POST["email"];
+	$idbiodata = $_POST["idbiodata"];
 	$password = $_POST["password"];
 
-	if ((empty($username)) || (empty($password))) { 
+	if ((empty($idbiodata)) || (empty($password))) { 
 		$response = new usr();
 		$response->success = 0;
 		$response->message = "Kolom tidak boleh kosong"; 
+		$response->biodata = $idbiodata;
+		$response->password = $password;
 		die(json_encode($response));
 	}
 
-	$query = mysqli_query($con, "SELECT p.*, j.nama as jabatan FROM pengguna p, jabatan j WHERE p.idjabatan=j.idjabatan AND username='$username' AND password='$password'");
+	$query = mysqli_query($con, "SELECT p.*, j.nama as jabatan, s.nama, pg.nama as pgnama FROM pengguna p, jabatan j, siswa s, pegawai pg WHERE p.idjabatan=j.idjabatan AND (s.nis=p.id_biodata OR pg.nip=p.id_biodata) AND id_biodata='$idbiodata' AND password='$password' limit 1;");
 
 	$row = mysqli_fetch_array($query);
 
@@ -21,7 +23,8 @@
 		$response = new usr();
 		$response->success = 1;
 		$response->idpengguna = $row['idpengguna'];
-        $response->email = $row['username'];
+        $response->nama = $row['nama'];
+        $response->pgnama = $row['pgnama'];
 		$response->password = $row['password'];
 		$response->idbiodata = $row['id_biodata'];
 		$response->jabatan = $row['jabatan'];
@@ -29,7 +32,7 @@
 	} else { 
 		$response = new usr();
 		$response->success = 0;
-		$response->message = "username atau password salah";
+		$response->message = "Nis atau Password salah!";
 		die(json_encode($response));
     }
     

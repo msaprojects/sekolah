@@ -2,7 +2,7 @@
 
     require_once('koneksi.php');
     
-    $sql = "select * from kelas;";
+    $sql = "SELECT * FROM kelas k, kelas_detail kd WHERE k.idkelas=kd.idkelas group by level_kelas";
 
     $r = mysqli_query($con, $sql);
 
