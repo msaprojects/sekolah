@@ -31,6 +31,12 @@ require_once('koneksi.php');
         $sql = "INSERT INTO informasi (judul, deskripsi, gambar, idkat_informasi, idpengguna) VALUES ('$judul', '$deskripsi', '$actualpath1', '1', '$idpengguna');";
 
         if(mysqli_query($con, $sql)){
+            
+            require_once('notification.php');
+            $notification = new Notification();
+            $tokenbk = mysqli_fetch_row(mysqli_query($con, "select p.token from pengguna p, pegawai pg, jabatan j where p.id_biodata=pg.nip and pg.idjabatan=j.idjabatan and j.nama='bk';"));
+            $result = $notification->sendFCMSingle("", "", $tokenbk[0], $notification->setNotification("Informasi", "Ada informasi baru."));
+            
             if($path1!="") file_put_contents($path1, base64_decode($image1));
             echo 'Berhasil Menambahkan Informasi ';
         }else{

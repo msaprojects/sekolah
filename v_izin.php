@@ -6,9 +6,9 @@
     $jabatan = $_GET['jabatan'];
 
     if($jabatan == 'Siswa'){
-        $sql = "SELECT ik.*, s.nama as nama, k.tingkat_kelas as kelas  FROM izin_kelas ik, siswa s, kelas_detail kd, kelas k where ik.nis=s.nis and s.nis=kd.nis and kd.idkelas=k.idkelas and s.nis=$idbiodata;";
+        $sql = "SELECT ik.*, s.nama as nama, k.tingkat_kelas as kelas  FROM izin_kelas ik, siswa s, kelas_detail kd, kelas k where ik.nis=s.nis and s.nis=kd.nis and kd.idkelas=k.idkelas and s.nis=$idbiodata order by ik.timestamp DESC";
     }else{
-        $sql = "SELECT ik.*, s.nama as nama, k.tingkat_kelas as kelas  FROM izin_kelas ik, siswa s, kelas_detail kd, kelas k where ik.nis=s.nis and s.nis=kd.nis and kd.idkelas=k.idkelas;";
+        $sql = "SELECT ik.*, s.nama as nama, k.tingkat_kelas as kelas  FROM izin_kelas ik, siswa s, kelas_detail kd, kelas k where ik.nis=s.nis and s.nis=kd.nis and kd.idkelas=k.idkelas order by ik.timestamp DESC;";
     }
 
     $r = mysqli_query($con, $sql);

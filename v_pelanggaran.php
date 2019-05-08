@@ -4,11 +4,11 @@
 
     $jabatan = $_GET['jabatan'];
     
-    if($jabatan=="Wali" || $jabatan=="Siswa"){
+    if($jabatan == "Siswa"){
         $idbiodata = $_GET['idbiodata'];
-        $sql = "SELECT p.*, ds.nama, kp.jenis_pelanggaran FROM pelanggaran p, kat_pelanggaran kp, data_siswa ds where p.idkat_pelanggaran=kp.idkat_pelanggaran and ds.nis=p.nis and p.nis=$idbiodata;";
+        $sql = "SELECT p.*, s.nama, kp.jenis_pelanggaran FROM pelanggaran p, kat_pelanggaran kp, siswa s where p.idkat_pelanggaran=kp.idkat_pelanggaran and s.nis=p.nis and p.nis=$idbiodata;";
     }else{
-        $sql = "SELECT p.*, ds.nama, kp.jenis_pelanggaran FROM pelanggaran p, kat_pelanggaran kp, data_siswa ds where p.idkat_pelanggaran=kp.idkat_pelanggaran and ds.nis=p.nis;";
+        $sql = "SELECT p.*, s.nama, kp.jenis_pelanggaran FROM pelanggaran p, kat_pelanggaran kp, siswa s where p.idkat_pelanggaran=kp.idkat_pelanggaran and s.nis=p.nis;";
     }
 
     $r = mysqli_query($con, $sql);

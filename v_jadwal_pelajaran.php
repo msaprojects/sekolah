@@ -5,7 +5,7 @@ header('Content-Type: charset=utf-8');
     $idbiodata = $_GET['idbiodata'];
     $hari = $_GET['idhari'];
     
-    $sql = "SELECT j.jam_ke, j.jam_awal, j.jam_akhir, k.level_kelas, mp.mapel, h.hari, p.nama as namaguru FROM jadwal_pelajaran jp, mata_pelajaran mp, hari h, kelas k, jam j, kelas_detail kd, pegawai p WHERE jp.nip=p.nip AND jp.idmata_pelajaran=mp.idmata_pelajaran AND h.idhari=jp.idhari AND jp.idkelas=k.idkelas AND j.idjam=jp.idjam AND kd.idkelas=k.idkelas AND kd.nis='$idbiodata' AND h.idhari=$hari ORDER BY k.level_kelas;";
+    $sql = "SELECT j.jam_ke, j.jam_awal, j.jam_akhir, k.level_kelas, mp.mapel, h.hari, p.nama as namaguru, jp.idjadwal_pelajaran, mp.idmata_pelajaran FROM jadwal_pelajaran jp, mata_pelajaran mp, hari h, kelas k, jam j, kelas_detail kd, pegawai p WHERE jp.nip=p.nip AND jp.idmata_pelajaran=mp.idmata_pelajaran AND h.idhari=jp.idhari AND jp.idkelas=k.idkelas AND j.idjam=jp.idjam AND kd.idkelas=k.idkelas AND kd.nis='$idbiodata' AND h.idhari=$hari ORDER BY k.level_kelas;";
 
     $r = mysqli_query($con, $sql);
 
@@ -19,7 +19,9 @@ header('Content-Type: charset=utf-8');
             "kelas"=>$row['level_kelas'],
             "mapel"=>$row['mapel'],
             "hari"=>$row['hari'],
-            "namaguru"=>$row['namaguru']
+            "namaguru"=>$row['namaguru'],
+            "idjadwal_pelajaran"=>$row['idjadwal_pelajaran'],
+            "idmata_pelajaran"=>$row['idmata_pelajaran'],
         ));
     }
 

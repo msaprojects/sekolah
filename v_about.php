@@ -2,7 +2,7 @@
 
     require_once('koneksi.php');
     
-    $sql = "SELECT * FROM informasi order by idinformasi DESC;";
+    $sql = "SELECT * FROM about order by idabout DESC;";
 
     $r = mysqli_query($con, $sql);
 
@@ -10,12 +10,9 @@
 
     while($row = mysqli_fetch_array($r)){
         array_push($result,array(
-            "idinformasi"=>$row['idinformasi'],
+            "idabout"=>$row['idabout'],
             "judul"=>$row['judul'],
-            "deskripsi"=>$row['deskripsi'],
-            "gambar"=>$row['gambar'],
-            "idkat_informasi"=>$row['idkat_informasi'],
-            "timestamp"=>$row['timestamp']
+            "keterangan"=>$row['keterangan']
         ));
     }
 

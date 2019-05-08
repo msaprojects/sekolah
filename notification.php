@@ -51,7 +51,7 @@ class Notification{
 		return $notification;
 	}
 	public function sendFCMSingle($send_to, $topic, $firebase_token, $requestData){
-		$firebase_api = "AAAA3F_rboY:APA91bH_ts8nNMZp1nu1NP4R_sFmXLWjQsyRjF0bqFTJmztHN3KeDpw-K2i7d2nJxwK28QsmDf-slEAMXSXVV0SPezy4Tvdj7LT_Y0wvxYWAsUnrPxGEw-rdhda93mq_0PXU8mLOQV3K";
+		$firebase_api = "AIzaSyBt5w7-dXoVB5bKXfPwef53Bgho2DFXIes";
 		if($send_to=='topic'){
 			$fields = array(
 				'to' => '/topics/' . $topic,
@@ -92,7 +92,7 @@ class Notification{
 		return $result;
 	}
 	public function sendFCMMultiple($send_to, $topic, $firebase_token, $requestData){
-		$firebase_api = "AAAA3F_rboY:APA91bH_ts8nNMZp1nu1NP4R_sFmXLWjQsyRjF0bqFTJmztHN3KeDpw-K2i7d2nJxwK28QsmDf-slEAMXSXVV0SPezy4Tvdj7LT_Y0wvxYWAsUnrPxGEw-rdhda93mq_0PXU8mLOQV3K";
+		$firebase_api = "AIzaSyBt5w7-dXoVB5bKXfPwef53Bgho2DFXIes";
 		if($send_to=='topic'){
 			$fields = array(
 				'to' => '/topics/' . $topic,
