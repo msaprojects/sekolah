@@ -5,7 +5,7 @@ require_once('koneksi.php');
     if($_SERVER['REQUEST_METHOD']=='POST'){
 
         $nis = $_POST['nis'];
-        $tanggal = $_POST['tanggal'];
+        // $tanggal = $_POST['tanggal'];
         $keterangan = $_POST['keterangan'];
         $idpengguna = $_POST['idpengguna'];
         $cek = "select * from absensi_bk where nis='$nis' and tanggal=DATE(NOW())";

@@ -1,40 +1,24 @@
 <?php
 
-header('Content-Type: charset=utf-8');
-
 require_once('koneksi.php');
 
     if($_SERVER['REQUEST_METHOD']=='POST'){
 
-        $judul = $_POST['judul'];
-        $deskripsi = $_POST['deskripsi'];
-        // $idkategori = $_POST['idkat_informasi'];
-        // $gambar = $_POST['gambar'];
+        $nis = $_POST['nis'];
+        $idkat_pelanggaran = $_POST['idkat_pelanggaran'];
+        $keterangan = $_POST['keterangan'];
+        $point = $_POST['point'];
+        $tanggal = $_POST['tanggal'];
+        $tindakan = $_POST['tindakan'];
         $idpengguna = $_POST['idpengguna'];
-        
-        $timestamp = 'now()';
-        $path1 = "";
-        $image1 = "";
 
-        if (isset($_POST['actualpath'])) $actualpath = $_POST['actualpath'];
-      
-        if(isset($_POST['gambar'])) {
-            $timestamp = date('Y_m_d__H_i_s');
-            $image1 = $_POST['gambar'];
-            $path1 = "gambar/informasi-$judul-$timestamp.jpg";
-          $actualpath1 = $actualpath.$path1;
-        }else{
-            $image1 = "";
-            $path1 = "";
-        }           
-
-        $sql = "INSERT INTO informasi (judul, deskripsi, gambar, idkat_informasi, idpengguna) VALUES ('$judul', '$deskripsi', '$actualpath1', '1', '$idpengguna');";
+        $sql = "INSERT INTO pelanggaran (nis, idkat_pelanggaran, keterangan, point, tanggal, tindakan, timestamp, idpengguna) VALUES ('$nis', '$idkat_pelanggaran', '$keterangan', '$point', STR_TO_DATE('$tanggal', '%d-%m-%Y'), $tindakan, NOW(), $idpengguna);";
 
         if(mysqli_query($con, $sql)){
-            if($path1!="") file_put_contents($path1, base64_decode($image1));
-            echo 'Berhasil Menambahkan Informasi ';
+            echo 'Pelanggaran Berhasil Ditambahkan!';
+            echo $sql;
         }else{
-            echo 'Gagal Menambahkan Informasi';
+            echo 'Pelanggaran Gagal Ditambahkan!';
             echo $sql;
         }
         mysqli_close($con);

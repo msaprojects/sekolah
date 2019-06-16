@@ -15,7 +15,7 @@
 		die(json_encode($response));
 	}
 
-	$query = mysqli_query($con, "SELECT p.*, j.nama as jabatan, s.nama, pg.nama as pgnama FROM pengguna p, jabatan j, siswa s, pegawai pg WHERE p.idjabatan=j.idjabatan AND (s.nis=p.id_biodata OR pg.nip=p.id_biodata) AND id_biodata='$idbiodata' AND password='$password' limit 1;");
+	$query = mysqli_query($con, "SELECT p.*, j.nama as jabatan, s.nama, pg.nama as pgnama, pg.foto as pgfoto, s.foto FROM pengguna p, jabatan j, siswa s, pegawai pg WHERE p.idjabatan=j.idjabatan AND (s.nis=p.id_biodata OR pg.nip=p.id_biodata) AND id_biodata='$idbiodata' AND password='$password' limit 1;");
 
 	$row = mysqli_fetch_array($query);
 
@@ -25,6 +25,8 @@
 		$response->idpengguna = $row['idpengguna'];
         $response->nama = $row['nama'];
         $response->pgnama = $row['pgnama'];
+        $response->foto = $row['foto'];
+        $response->pgfoto = $row['pgfoto'];
 		$response->password = $row['password'];
 		$response->idbiodata = $row['id_biodata'];
 		$response->jabatan = $row['jabatan'];
