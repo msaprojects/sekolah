@@ -1,6 +1,6 @@
 <?php
 
-	 define('HOST','127.0.0.1');
+	 define('HOST','www.linas-media.com');
 	 define('USER','linasme2_syahrul');
 	 define('PASS','bismillah2019');
 	 define('DB','linasme2_sekolah');

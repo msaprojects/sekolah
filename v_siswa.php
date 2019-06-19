@@ -1,9 +1,8 @@
 <?php 
-
     require_once('koneksi.php');
 
-    $jabatan = $_GET['jabatan'];
-    if(!$jabatan == "Siswa"){
+    // $jabatan = $_GET['jabatan'];
+    // if(!$jabatan == "Siswa"){
         $idkelas = $_GET['idkelas'];
         $sql = "SELECT s.nis, s.nisn, s.nama, s.tempat_lahir, s.tgl_lahir, k.tingkat_kelas, k.level_kelas, j.nama as jurusan  from siswa s, kelas k, kelas_detail kd, jurusan j where s.nis=kd.nis and k.idjurusan=j.idjurusan and kd.idkelas=k.idkelas and k.idkelas=$idkelas";
 
@@ -23,8 +22,8 @@
 
         echo json_encode(array('result'=>$result));
         mysqli_close($con);
-    }else{
-        mysqli_close($con);
-    }
+    // }else{
+    //     mysqli_close($con);
+    // }
 
 ?>

@@ -7,7 +7,7 @@ require_once('koneksi.php');
         $idpengguna = $_POST['idpengguna'];
         $token = $_POST['token'];
        
-        $sql = "UPDATE pengguna SET token='$token', aktif=1 WHERE idpengguna='$idpengguna'";
+        $sql = "UPDATE pengguna SET token='', aktif=0 WHERE idpengguna='$idpengguna'";
 
         if(mysqli_query($con, $sql)){
             if($path1!="") file_put_contents($path1, base64_decode($image1));
