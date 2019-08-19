@@ -10,10 +10,9 @@ require_once('koneksi.php');
         $sql = "UPDATE pengguna SET token='', aktif=0 WHERE idpengguna='$idpengguna'";
 
         if(mysqli_query($con, $sql)){
-            if($path1!="") file_put_contents($path1, base64_decode($image1));
-            echo 'Izin Berhhasil Di setujui';
+            echo 'Logout Berhasil';
         }else{
-            echo 'Izin Di tolak';
+            echo 'Logout Gagal';
             echo $sql;
         }
         mysqli_close($con);

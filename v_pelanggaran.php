@@ -8,7 +8,9 @@
         $idbiodata = $_GET['idbiodata'];
         $sql = "SELECT p.*, s.nama as siswa, pp.*, kp.jenis_pelanggaran FROM pelanggaran p, point_pelanggaran pp, kat_pelanggaran kp, siswa s where p.idpoint_pelanggaran=pp.idpoint_pelanggaran and pp.idkat_pelanggaran=kp.idkat_pelanggaran and s.nis=p.nis and p.nis=$idbiodata;";
     }else{
-        $sql = "SELECT p.*, s.nama as siswa, pp.*, kp.jenis_pelanggaran FROM pelanggaran p, point_pelanggaran pp, kat_pelanggaran kp, siswa s where p.idpoint_pelanggaran=pp.idpoint_pelanggaran and pp.idkat_pelanggaran=kp.idkat_pelanggaran and s.nis=p.nis and p.tanggal=date(now());";
+        $idkelas = $_GET['idkelas'];
+        // $sql = "SELECT p.*, s.nama as siswa, pp.*, kp.jenis_pelanggaran FROM pelanggaran p, point_pelanggaran pp, kat_pelanggaran kp, siswa s where p.idpoint_pelanggaran=pp.idpoint_pelanggaran and pp.idkat_pelanggaran=kp.idkat_pelanggaran and s.nis=p.nis and p.tanggal=date(now());";
+        $sql = "SELECT p.*, s.nama as siswa, k.*, pp.*, kp.jenis_pelanggaran FROM pelanggaran p, point_pelanggaran pp, kat_pelanggaran kp, siswa s, kelas k, kelas_detail kd where p.idpoint_pelanggaran=pp.idpoint_pelanggaran and pp.idkat_pelanggaran=kp.idkat_pelanggaran and s.nis=p.nis and MONTH(p.tanggal) and s.nis=kd.nis and k.idkelas=kd.idkelas and k.idkelas=$idkelas;";
     }
 
     $r = mysqli_query($con, $sql);

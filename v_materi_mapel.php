@@ -13,11 +13,13 @@
 
     while($row = mysqli_fetch_array($r)){
         array_push($result,array(
+            "idmateri"=>$row['idmateri'],
             "tanggal"=>$row['tanggal'],
             "judul"=>$row['judul'],
             "materi"=>$row['materi'],
             "tugas"=>$row['tugas'],
-            "keterangan"=>$row['keterangan']            
+            "judul_tugas"=>$row['judul_tugas'],
+            "tgl_akhir_tugas"=>$row['tgl_akhir_tugas']   
         ));
     }
 

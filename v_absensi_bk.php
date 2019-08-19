@@ -27,13 +27,13 @@
 
     if($jabatan=="Siswa" || $jabatan=="siswa" || $selainmasuk==""){
         $idbiodata = $_GET['idbiodata'];
-        $sql = "SELECT s.nama, k.level_kelas as kelas, abk.nis, abk.jam, abk.tanggal, abk.keterangan FROM absensi_bk abk, siswa s, kelas k, kelas_detail kd where abk.nis=s.nis and kd.nis=s.nis and kd.idkelas=k.idkelas and abk.nis=$idbiodata".$vfilter;
+        $sql = "SELECT s.nama, k.level_kelas as kelas, abk.nis, abk.jam, abk.tanggal, abk.keterangan FROM absensi_bk abk, siswa s, kelas k, kelas_detail kd where abk.nis=s.nis and kd.nis=s.nis and kd.idkelas=k.idkelas and abk.nis=$idbiodata Order By abk.idabsensi_bk DESC";
     // }elseif($jabatan=="BK" || $jabatan=="Pegawai" || $jabatan=="Akademik" || $selainmasuk==""){
     //     $sql = "SELECT s.nama, k.level_kelas as kelas, abk.nis, abk.jam, abk.tanggal, abk.keterangan FROM absensi_bk abk, siswa s, kelas k, kelas_detail kd where abk.nis=s.nis and kd.nis=s.nis and kd.idkelas=k.idkelas".$vfilter;
     }
     elseif($jabatan=="BK" || $jabatan=="Pegawai" || $jabatan=="Akademik" || $selainmasuk!=""){
         $kelas = $_GET['kelas'];
-        $sql = "SELECT s.nama, k.level_kelas as kelas, abk.nis, abk.jam, abk.tanggal, abk.keterangan FROM absensi_bk abk, siswa s, kelas k, kelas_detail kd where abk.nis=s.nis and kd.nis=s.nis and kd.idkelas=k.idkelas and abk.keterangan!='Masuk' and k.idkelas=$kelas".$vfilter;
+        $sql = "SELECT s.nama, k.level_kelas as kelas, abk.nis, abk.jam, abk.tanggal, abk.keterangan FROM absensi_bk abk, siswa s, kelas k, kelas_detail kd where abk.nis=s.nis and kd.nis=s.nis and kd.idkelas=k.idkelas and abk.keterangan!='masuk' and abk.tanggal = date(now()) and k.idkelas=$kelas Order By abk.tanggal DESC";
     }
     
     $r = mysqli_query($con, $sql);
