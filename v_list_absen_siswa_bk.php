@@ -1,10 +1,9 @@
 <?php 
-header('Content-Type: charset=utf-8');
     require_once('koneksi.php');
     
     $kelas = $_GET['idkelas'];
     
-    $sql = "SELECT s.nis, s.nama, k.level_kelas, k.tingkat_kelas FROM siswa s,kelas k, kelas_detail kd WHERE s.nis=kd.nis AND k.idkelas=kd.idkelas AND s.kelas=k.tingkat_kelas AND k.idkelas=$kelas and s.nis not in (select nis from absensi_bk where tanggal=date(now()));";
+    $sql = "SELECT s.nis, s.nama, k.level_kelas, k.tingkat_kelas, k.idkelas FROM siswa s,kelas k, kelas_detail kd WHERE s.nis=kd.nis AND k.idkelas=kd.idkelas AND s.kelas=k.tingkat_kelas AND k.idkelas=$kelas and s.nis not in (select nis from absensi_bk where tanggal=CURDATE());";
     
     $r = mysqli_query($con, $sql);
 
@@ -15,7 +14,8 @@ header('Content-Type: charset=utf-8');
                 "nis"=>$row['nis'],
                 "nama"=>$row['nama'],
                 "level_kelas"=>$row['level_kelas'],
-                "tingkat_kelas"=>$row['tingkat_kelas']
+                "tingkat_kelas"=>$row['tingkat_kelas'],
+                "idkelas"=>$row['idkelas']
             ));
         }
     }else{
