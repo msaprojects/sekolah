@@ -3,7 +3,6 @@
     require_once('koneksi.php');
 
     $jabatan = $_GET['jabatan'];
-    // $nip = $_GET['nip'];
     if($jabatan=="Siswa"){
         
         $nis=$_GET['nis'];

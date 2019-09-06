@@ -10,13 +10,13 @@ require_once('koneksi.php');
         $idpengguna = $_POST['idpengguna'];
         $idkelas = $_POST['idkelas'];
 
-        $cek = "select * from absensi_bk where nis='$nis' and tanggal=DATE(NOW())";
+        $cek = "select * from absensi_bk where nis='$nis' and tanggal=CURDATE)";
         $recordcount = mysqli_query($con, $cek);
         
         if(mysqli_num_rows($recordcount)==0){
-            $sql = "INSERT INTO absensi_bk (nis, idkelas, keterangan, jam, tanggal, timestamp, idpengguna) VALUES ('$nis', '$idkelas', '$keterangan', TIME(NOW()), NOW(), NOW(), 3);";
+            $sql = "INSERT INTO absensi_bk (nis, idkelas, keterangan, jam, tanggal, timestamp, idpengguna) VALUES ('$nis', '$idkelas', '$keterangan', CURTIME(), CURDATE(), NOW(), 3);";
         }else{
-          $sql = "UPDATE absensi_bk SET keterangan='$keterangan' where nis='$nis' and tanggal=DATE(NOW());";
+          $sql = "UPDATE absensi_bk SET keterangan='$keterangan' where nis='$nis' and tanggal=CURDATE());";
         }
 
         if(mysqli_query($con, $sql)){

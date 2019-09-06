@@ -8,8 +8,6 @@ require_once('koneksi.php');
 
         $judul = $_POST['judul'];
         $deskripsi = $_POST['deskripsi'];
-        // $idkategori = $_POST['idkat_informasi'];
-        // $gambar = $_POST['gambar'];
         $idpengguna = $_POST['idpengguna'];
         
         $timestamp = 'now()';

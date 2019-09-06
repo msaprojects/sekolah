@@ -13,7 +13,7 @@ require_once('koneksi.php');
         $timestamp = 'now()';
 
 
-        $approve = "0";
+        $approve = "";
         $image1="";
         $actualpath = "";
         $actualpath1 = "";
