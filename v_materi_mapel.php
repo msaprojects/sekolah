@@ -1,5 +1,6 @@
 <?php 
-
+    header('Content-Type: charset=utf-8');
+    date_default_timezone_set('Asia/Jakarta');
     require_once('koneksi.php');
     
     $idmata_pelajaran = $_GET['idmata_pelajaran'];
