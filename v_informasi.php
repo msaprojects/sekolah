@@ -2,6 +2,8 @@
     header('Content-Type: charset=utf-8');
     date_default_timezone_set('Asia/Jakarta');
     require_once('koneksi.php');
+
+    echo $con;
     
     $sql = "SELECT * FROM informasi order by idinformasi DESC;";
 
@@ -21,5 +23,6 @@
     }
 
     echo json_encode(array('result'=>$result));
+    echo $con;
     mysqli_close($con);
 ?>

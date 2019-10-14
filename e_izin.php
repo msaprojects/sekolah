@@ -12,11 +12,11 @@
         if(mysqli_query($con, $sql)){
              require_once('notification.php');
             $notification = new Notification();
-            $tokenbk = mysqli_fetch_row(mysqli_query($con, "select token from pengguna where id_biodata=(select nis from izin_kelas where idizin_kelas='$idizin');;"));
+            $tokenbk = mysqli_fetch_row(mysqli_query($con, "select token from pengguna where id_biodata=(SELECT nis from izin_kelas where idizin_kelas='$idizin');;"));
             $result = $notification->sendFCMSingle("", "", $tokenbk[0], $notification->setNotification("IZIN", "Izin Anda Disetujui."));
             
             if($path1!="") file_put_contents($path1, base64_decode($image1));
-            echo 'Izin Berhhasil Di setujui';
+            echo 'Izin Berhasil Di setujui';
         }else{
             echo 'Izin Di tolak';
             echo $sql;

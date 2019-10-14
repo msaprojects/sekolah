@@ -7,9 +7,9 @@
 
     if($jabatan == 'Siswa' || $jabatan == 'Wali'){
         $idbiodata = $_GET['idbiodata'];
-        $sql = "SELECT * FROM pembayaran p, pembayaran_detail pd where p.idpembayaran=pd.idpembayaran and nis='$idbiodata';";
+        $sql = "SELECT * FROM pembayaran p, pembayaran_detail pd where p.idpembayaran=pd.idpembayaran and nis='$idbiodata' group by p.idpembayaran;";
     }else{
-        $sql = "SELECT * FROM pembayaran p, pembayaran_detail pd where p.idpembayaran=pd.idpembayaran;";
+        $sql = "SELECT * FROM pembayaran p, pembayaran_detail pd where p.idpembayaran=pd.idpembayaran and p.tanggal_bayar=month(tanggal_bayar) group by p.idpembayaran;";
     }
 
     $r = mysqli_query($con, $sql);
@@ -19,14 +19,11 @@
     while($row = mysqli_fetch_array($r)){
         array_push($result,array(
             "idpembayaran"=>$row['idpembayaran'],
-            "no"=>$row['no'],
+            "no"=>$row['no'],   
             "tanggal_bayar"=>$row['tanggal_bayar'],
-            "bulan"=>$row['bulan'],
-            "nis"=>$row['nis'],
-            "nominal"=>$row['nominal'],
-            "nominal_lain"=>$row['nominal_lain'],
             "total"=>$row['total'],
-            "timestamp"=>$row['timestamp']
+            "keterangan"=>$row['keterangan'],
+            "nis"=>$row['nis']
         ));
     }
 

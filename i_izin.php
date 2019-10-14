@@ -40,7 +40,6 @@ require_once('koneksi.php');
             $tokenbk = mysqli_fetch_row(mysqli_query($con, "select p.token from pengguna p, pegawai pg, jabatan j where p.id_biodata=pg.nip and pg.idjabatan=j.idjabatan and j.nama='bk';"));
             $result = $notification->sendFCMSingle("", "", $tokenbk[0], $notification->setNotification("IZIN", "Ada siswa yang izin."));
 
-            
             if($path1!="") file_put_contents($path1, base64_decode($image1));
             echo 'Izin untuk anak anda berhasil di ajukan.';
             echo $result." - ".$tokenbk[0];

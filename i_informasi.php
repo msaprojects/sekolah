@@ -30,7 +30,7 @@ require_once('koneksi.php');
 
         if(mysqli_query($con, $sql)){
             
-                require_once('notification.php');
+            require_once('notification.php');
             $notification = new Notification();
             $result = $notification->sendFCMMultiple("topic", "topic", "", $notification->setNotification("Informasi", "Ada informasi baru."));
             

@@ -6,18 +6,17 @@
     if($_SERVER['REQUEST_METHOD']=='POST'){
 
         $nis = $_POST['nis'];
-        // $tanggal = $_POST['tanggal'];
         $keterangan = $_POST['keterangan'];
         $idpengguna = $_POST['idpengguna'];
         $idkelas = $_POST['idkelas'];
 
-        $cek = "select * from absensi_bk where nis='$nis' and tanggal=CURDATE)";
+        $cek = "SELECT * from absensi_bk where nis='$nis' and tanggal=CURDATE()";
         $recordcount = mysqli_query($con, $cek);
         
         if(mysqli_num_rows($recordcount)==0){
-            $sql = "INSERT INTO absensi_bk (nis, idkelas, keterangan, jam, tanggal, timestamp, idpengguna) VALUES ('$nis', '$idkelas', '$keterangan', CURTIME(), CURDATE(), NOW(), 3);";
+            $sql = "INSERT INTO absensi_bk (nis, idkelas, keterangan, jam, tanggal, timestamp, idpengguna) VALUES ('$nis', '$idkelas', '$keterangan', CURTIME(), CURDATE(), NOW(), '$idpengguna');";
         }else{
-          $sql = "UPDATE absensi_bk SET keterangan='$keterangan' where nis='$nis' and tanggal=CURDATE());";
+            $sql = "UPDATE absensi_bk SET keterangan='$keterangan' where nis='$nis' and tanggal=CURDATE();";
         }
 
         if(mysqli_query($con, $sql)){
@@ -27,11 +26,9 @@
             $tokenbk = mysqli_fetch_row(mysqli_query($con, "select token from pengguna where id_biodata='$nis';"));
             $nama = mysqli_fetch_row(mysqli_query($con, "select nama from siswa where nis='$nis';"));
             $result = $notification->sendFCMSingle("", "", $tokenbk[0], $notification->setNotification("Absensi", "Hari ini ".$nama[0]." status absensinya ".$keterangan));
-
             
+            echo $sql;
             echo 'Absen Siswa Berhasil';
-            echo $cek." adu ".$sql;
-            echo mysqli_num_rows($recordcount);
         }else{
             echo 'Izin Untuk anak anda di tolak';
             echo $sql;
