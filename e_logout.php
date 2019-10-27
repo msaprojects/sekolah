@@ -6,7 +6,7 @@
     if($_SERVER['REQUEST_METHOD']=='POST'){
 
         $idpengguna = $_POST['idpengguna'];
-        $token = $_POST['token'];
+        // $token = $_POST['token'];
        
         $sql = "UPDATE pengguna SET token='', aktif=0 WHERE idpengguna='$idpengguna'";
 

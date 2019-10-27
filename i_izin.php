@@ -42,7 +42,7 @@ require_once('koneksi.php');
 
             if($path1!="") file_put_contents($path1, base64_decode($image1));
             echo 'Izin untuk anak anda berhasil di ajukan.';
-            echo $result." - ".$tokenbk[0];
+            // echo $result." - ".$tokenbk[0];
         }else{
             echo 'Izin Untuk anak anda di tolak';
             echo $sql;

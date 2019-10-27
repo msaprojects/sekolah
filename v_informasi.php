@@ -3,7 +3,7 @@
     date_default_timezone_set('Asia/Jakarta');
     require_once('koneksi.php');
 
-    echo $con;
+    // echo $con;
     
     $sql = "SELECT * FROM informasi order by idinformasi DESC;";
 
@@ -23,6 +23,6 @@
     }
 
     echo json_encode(array('result'=>$result));
-    echo $con;
+    // echo $con;
     mysqli_close($con);
 ?>
